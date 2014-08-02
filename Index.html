@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de" ng-app="todo">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ToDo's</title>
+
+    <link href="style/bootstrap.css" rel="stylesheet">
+    <link href="style/todo.css" rel="stylesheet">
+</head>
+
+<body ng-controller="TodoController as todo">
+    <div class="todo-board disable-select">
+        <div ng-repeat="group in todo.groups" ng-dblclick="todo.addNote(group.id)" drop="todo.moveNote($dragData.note, $dragData.oldGroupId, group.id)" class="todo-col">
+            <h1>{{group.label}}</h1>
+            <div class="note-container">
+                <note ng-repeat="note in group.notes" drag="{'note': note, 'oldGroupId': group.id}" on-remove="todo.removeNote(note)" data="note"></note>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/angular.js"></script>
+    <script src="script/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="script/todo.js"></script>
+    <script src="script/note.js"></script>
+    <script src="script/dragndrop.js"></script>
+    <script src="script/db.js"></script>
+</body>
+
+</html>
