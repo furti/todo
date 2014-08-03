@@ -12,9 +12,9 @@
 </head>
 
 <body ng-controller="TodoController as todo">
-    <div class="todo-board disable-select">
+    <div class="todo-board">
         <div ng-repeat="group in todo.groups" ng-dblclick="todo.addNote(group.id)" drop="todo.moveNote($dragData.note, $dragData.oldGroupId, group.id)" class="todo-col">
-            <h1>{{group.label}}</h1>
+            <h1 class="disable-select">{{group.label}}</h1>
             <div class="note-container">
                 <note ng-repeat="note in group.notes" drag="{'note': note, 'oldGroupId': group.id}" on-remove="todo.removeNote(note)" data="note" on-edit="todo.noteEdited(note)"></note>
             </div>
