@@ -64,6 +64,7 @@ body {
 }
 .note-trash {
     margin-left: 10px;
+    cursor: pointer;
 }
 .ng-invalid {
     border-color: #a94442;
