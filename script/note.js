@@ -13,7 +13,7 @@
                 link: function(scope, element, attrs) {
                     element.attr('class', 'note');
                 },
-                templateUrl: '/templates/Note.html'
+                templateUrl: './templates/Note.html'
             };
         }
     ]);

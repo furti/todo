@@ -46,7 +46,7 @@
 
             this.addNote = function(groupId) {
                 var modal = $modal.open({
-                    templateUrl: '/templates/NewNote.html',
+                    templateUrl: './templates/NewNote.html',
                     controller: 'NewNoteController as newNote'
                 });
 
