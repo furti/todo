@@ -59,6 +59,9 @@ body {
 .note-content {
     padding: 0 5px;
 }
+.note-content p {
+    white-space: pre-wrap;
+}
 .note-trash {
     margin-left: 10px;
 }

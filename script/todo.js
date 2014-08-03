@@ -75,6 +75,14 @@
                 });
             };
 
+            this.noteEdited = function(note) {
+                todoDb.insetOrUpdate(note).then(function() {
+                    //nothing to do here
+                }, function(error) {
+                    alert(error);
+                });
+            };
+
             this.moveNote = function(note, oldGroupId, newGroupId) {
                 if (oldGroupId === newGroupId) {
                     return;

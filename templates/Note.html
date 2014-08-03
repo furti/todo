@@ -1,5 +1,8 @@
 <h3 class="note-header">{{data.title}} 
-    <a ng-click="remove(data)" class="note-trash"><span class="glyphicon glyphicon-trash"></span></a></h3>
-<p class="note-content">
-    {{data.text}}
-</p>
+    <a ng-click="doRemove()" class="note-trash"><span class="glyphicon glyphicon-trash"></span></a></h3>
+<div class="note-content" ng-dblclick="edit($event)">
+    <p ng-hide="editMode">{{data.text}}</p>
+    <div ng-show="editMode">
+        <textarea ng-model="data.text" rows="5" ng-blur="finishEdit()"></textarea>
+    </div>
+</div>
