@@ -16,6 +16,7 @@ body {
 }
 .todo-col {
     flex: 1 33%;
+    padding-right: 10px;
     display: flex;
     flex-direction: column;
     background-image: url("../images/line-vertical.png");
@@ -42,10 +43,12 @@ body {
     flex-wrap: wrap;
 }
 .note {
-    margin: 5px;
+    padding: 10px 0 10px 10px;
+    max-width: 50%;
+}
+.note-inner {
     background-color: #FFFD75;
     box-shadow: 2px 2px 5px #cccccc;
-    max-width: 50%;
 }
 .note-header {
     font-size: 14px;

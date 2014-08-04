@@ -11,8 +11,10 @@
                     remove: '&onRemove',
                     edited: '&onEdit'
                 },
-                controller: ['$scope', '$modal',
-                    function($scope, $modal) {
+                controller: ['$scope', '$modal', '$timeout',
+                    function($scope, $modal, $timeout) {
+                        var ctrl = this;
+                        
                         $scope.doRemove = function() {
                             var modal = $modal.open({
                                 scope: $scope,
@@ -29,6 +31,11 @@
                         $scope.edit = function($event) {
                             $scope.editMode = true;
 
+                            $timeout(function() {
+                                ctrl.textarea[0].focus();
+                            }, 10);
+
+
                             $event.stopPropagation();
                         };
 
@@ -39,8 +46,10 @@
                         };
                     }
                 ],
-                link: function(scope, element, attrs) {
+                link: function(scope, element, attrs, ctrl) {
                     element.attr('class', 'note');
+
+                    ctrl.textarea = element.find('textarea');
                 },
                 templateUrl: './templates/Note.html'
             };
