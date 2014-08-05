@@ -14,3 +14,6 @@ Double click on the notes text to edit it. After you have changed the text click
 
 ###Moving Notes
 To move a note drag it to another column.
+
+###Export
+To export the data click on the cog in the top right corner and choose *Export / Import*. Click on *Generate Export* and copy the data in the textarea to a texfile of your choice.
