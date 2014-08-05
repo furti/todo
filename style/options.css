@@ -1,0 +1,71 @@
+.todo-options {
+    position: fixed;
+    top: 10px;
+    right: 0;
+    width: 300px;
+    overflow: hidden;
+    margin-right: -260px;
+}
+.options-button {
+    float: left;
+}
+.options-button .btn {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    outline: none;
+}
+.options-content {
+    float: right;
+    width: 260px;
+    margin-left: -1px;
+}
+.options-content .list-group-item {
+    border-radius: 0px;
+}
+.todo-options.open {
+    margin-right: 0px;
+}
+.todo-options.open-add {
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-name: slidein;
+    animation-duration: 1.5s;
+    animation-name: slidein;
+}
+.todo-options.open-remove {
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-name: slideout;
+    animation-duration: 1.5s;
+    animation-name: slideout;
+}
+@-webkit-keyframes slidein {
+    from {
+        margin-right: -260px;
+    }
+    to {
+        margin-right: 0px;
+    }
+}
+@keyframes slidein {
+    from {
+        margin-right: -260px;
+    }
+    to {
+        margin-right: 0px;
+    }
+}
+@-webkit-keyframes slideout {
+    from {
+        margin-right: 0px;
+    }
+    to {
+        margin-right: -260px;
+    }
+}
+@keyframes slideout {
+    from {
+        margin-right: 0px;
+    }
+    to {
+        margin-right: -260px;
+    }
+}

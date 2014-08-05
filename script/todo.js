@@ -1,5 +1,5 @@
 (function(angular) {
-    var todo = angular.module('todo', ['ui.bootstrap']);
+    var todo = angular.module('todo', ['ui.bootstrap', 'ngAnimate']);
 
     todo.run(['todoDb',
         function(todoDb) {
@@ -19,9 +19,9 @@
         });
     }
 
-    todo.controller('TodoController', ['$modal', 'todoUtils', 'todoDb',
+    todo.controller('TodoController', ['$modal', 'todoUtils', 'todoDb', '$rootScope',
 
-        function($modal, todoUtils, todoDb) {
+        function($modal, todoUtils, todoDb, $rootScope) {
             var ctrl = this;
 
             this.groups = [{
@@ -104,6 +104,18 @@
                     alert(error);
                 });
             };
+
+            this.openExport = function() {
+                $modal.open({
+                    resolve: {
+                        groups: function() {
+                            return ctrl.groups;
+                        }
+                    },
+                    controller: 'ExportController',
+                    templateUrl: './templates/Export.html'
+                });
+            };
         }
     ]);
 
@@ -113,6 +125,20 @@
             text: null
         };
     });
+
+    todo.controller('ExportController', ['$scope', 'groups',
+        function($scope, groups) {
+            $scope.generateExport = function() {
+                var allNotes = [];
+
+                angular.forEach(groups, function(group) {
+                    allNotes = allNotes.concat(group.notes);
+                });
+
+                $scope.jsonData = angular.toJson(allNotes);
+            };
+        }
+    ]);
 
     todo.factory('todoUtils', function() {
         var utils = {};

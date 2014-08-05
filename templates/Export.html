@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h3 class="modal-title">Export / Import</h3>
+</div>
+<div class="modal-body">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" ng-click="generateExport()">Generate Export</button>
+    </div>
+    <div>
+        <textarea ng-model="jsonData" class="export-text"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn" ng-click="$dismiss()">Cancel</button>
+</div>

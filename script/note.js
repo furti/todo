@@ -14,7 +14,7 @@
                 controller: ['$scope', '$modal', '$timeout',
                     function($scope, $modal, $timeout) {
                         var ctrl = this;
-                        
+
                         $scope.doRemove = function() {
                             var modal = $modal.open({
                                 scope: $scope,
@@ -48,6 +48,10 @@
                 ],
                 link: function(scope, element, attrs, ctrl) {
                     element.attr('class', 'note');
+
+                    element.children('div').on('dblclick', function(event) {
+                        event.stopPropagation();
+                    });
 
                     ctrl.textarea = element.find('textarea');
                 },

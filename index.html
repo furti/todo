@@ -9,6 +9,7 @@
 
     <link href="style/bootstrap.min.css" rel="stylesheet">
     <link href="style/todo.css" rel="stylesheet">
+    <link href="style/options.css" rel="stylesheet">
 </head>
 
 <body ng-controller="TodoController as todo">
@@ -20,13 +21,16 @@
             </div>
         </div>
     </div>
+    <options on-export="todo.openExport()"></options>
 
     <script src="script/angular.min.js"></script>
+    <script src="script/angular-animate.min.js"></script>
     <script src="script/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="script/todo.js"></script>
     <script src="script/note.js"></script>
     <script src="script/dragndrop.js"></script>
     <script src="script/db.js"></script>
+    <script src="script/options.js"></script>
 </body>
 
 </html>
