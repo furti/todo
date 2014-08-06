@@ -4,9 +4,10 @@
 <div class="modal-body">
     <div class="btn-group">
         <button type="button" class="btn btn-default" ng-click="generateExport()">Generate Export</button>
+        <button type="button" class="btn btn-default" ng-click="importData()">Import Data</button>
     </div>
     <div>
-        <textarea ng-model="jsonData" class="export-text"></textarea>
+        <textarea ng-model="data.jsonData" class="export-text"></textarea>
     </div>
 </div>
 <div class="modal-footer">

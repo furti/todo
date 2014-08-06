@@ -106,13 +106,55 @@
             };
 
             this.openExport = function() {
+                var modalScope = $rootScope.$new();
+                modalScope.groups = ctrl.groups;
+                modalScope.data = {};
+
+                modalScope.generateExport = function() {
+                    var allNotes = [];
+
+                    angular.forEach(modalScope.groups, function(group) {
+                        allNotes = allNotes.concat(group.notes);
+                    });
+
+                    modalScope.data.jsonData = angular.toJson(allNotes);
+                };
+
+                modalScope.importData = function() {
+                    if (!angular.isString(modalScope.data.jsonData)) {
+                        return;
+                    }
+
+                    var toImport = angular.fromJson(modalScope.data.jsonData);
+
+                    angular.forEach(modalScope.groups, function(group) {
+                        angular.forEach(group.notes, function(noteToDel) {
+                            todoDb.remove(noteToDel).then(function() {
+                                //Nothing to do here
+                            }, function(error) {
+                                alert(error);
+                            });
+                        });
+
+                        group.notes.length = 0;
+                    });
+
+                    angular.forEach(toImport, function(importNote) {
+                        delete importNote.id;
+
+                        todoDb.insetOrUpdate(importNote).then(function(noteId) {
+                            importNote.id = noteId;
+
+                            todoUtils.findGroupById(modalScope.groups, importNote.group).notes.push(importNote);
+                        }, function(error) {
+                            alert(error);
+                        });
+
+                    });
+                };
+
                 $modal.open({
-                    resolve: {
-                        groups: function() {
-                            return ctrl.groups;
-                        }
-                    },
-                    controller: 'ExportController',
+                    scope: modalScope,
                     templateUrl: './templates/Export.html'
                 });
             };
@@ -125,20 +167,6 @@
             text: null
         };
     });
-
-    todo.controller('ExportController', ['$scope', 'groups',
-        function($scope, groups) {
-            $scope.generateExport = function() {
-                var allNotes = [];
-
-                angular.forEach(groups, function(group) {
-                    allNotes = allNotes.concat(group.notes);
-                });
-
-                $scope.jsonData = angular.toJson(allNotes);
-            };
-        }
-    ]);
 
     todo.factory('todoUtils', function() {
         var utils = {};
